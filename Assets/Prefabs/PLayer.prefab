@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4271802116289626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphycs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 114462277719801978}
   - component: {fileID: 114243708125541368}
   - component: {fileID: 153792448806436792}
-  m_Layer: 0
+  - component: {fileID: 114360371977226632}
+  m_Layer: 8
   m_Name: PLayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +62,7 @@ GameObject:
   - component: {fileID: 33616584409927102}
   - component: {fileID: 65934267175515450}
   - component: {fileID: 23726654905649752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +80,7 @@ GameObject:
   - component: {fileID: 20552265446251008}
   - component: {fileID: 124694417607019428}
   - component: {fileID: 81817954280432178}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +97,7 @@ GameObject:
   - component: {fileID: 4539665352566512}
   - component: {fileID: 33059435419836240}
   - component: {fileID: 23449526369122164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,6 +343,25 @@ MonoBehaviour:
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.3
   m_InterpolateMovement: 0
+--- !u!114 &114360371977226632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243261334084072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35f3f27a9932ac48ae1ff2eaac93126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+    nameWeapon: Glock
+    damage: 10
+    range: 100
+  cam: {fileID: 20552265446251008}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &114462277719801978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b5fbc541e83474aa97d3c733415713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraRotLimit: 85
   cam: {fileID: 20552265446251008}
 --- !u!114 &114879544480086490
 MonoBehaviour:
@@ -435,8 +456,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56c712c8400f2840ba5bd2785233fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  speedMouse: 3
+  speed: 5
+  speedMouse: 1.5
+  thusterForce: 1300
+  mode: 1
+  jointSpring: 20
+  jointMaxForce: 40
 --- !u!124 &124694417607019428
 Behaviour:
   m_ObjectHideFlags: 1
