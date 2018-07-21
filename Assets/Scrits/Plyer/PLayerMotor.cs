@@ -7,14 +7,20 @@ public class PLayerMotor : MonoBehaviour {
     //vectors
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotate = Vector3.zero;
-    private Vector3 cameraRotation = Vector3.zero;
-    
+    private Vector3 thruster = Vector3.zero;
+
+    [SerializeField]
+    private float cameraRotLimit = 85f;
+    private float cameraRotation = 0f;
+    private float currentCameraRot = 0f;
+
     //physics component
     private Rigidbody rb;
 
     //serialized component
     [SerializeField]
     private Camera cam;
+   
 
     private void Start()
     {
@@ -38,7 +44,7 @@ public class PLayerMotor : MonoBehaviour {
     {
         rotate = _rotate;
     }
-    public void RotateCamera(Vector3 _cameraRotate)
+    public void RotateCamera(float _cameraRotate)
     {
         cameraRotation = _cameraRotate;
     }
@@ -48,6 +54,11 @@ public class PLayerMotor : MonoBehaviour {
         {
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         }
+
+        if(thruster != Vector3.zero)
+        {
+            rb.AddForce(thruster * Time.fixedDeltaTime, ForceMode.Acceleration);
+        }
     }
     void PerformRotate()
     {
@@ -55,7 +66,17 @@ public class PLayerMotor : MonoBehaviour {
 
         if (cam != null)
         {
-            cam.transform.Rotate(-cameraRotation);
+
+            //Set our rot and clat it
+            currentCameraRot -= cameraRotation;
+            currentCameraRot = Mathf.Clamp(currentCameraRot, -cameraRotLimit,cameraRotLimit);
+            //apply
+            cam.transform.localEulerAngles = new Vector3(currentCameraRot, 0f, 0f);
         }
+    }
+
+    public void Thruster(Vector3 _thruster)
+    {
+        thruster = _thruster;
     }
 }
