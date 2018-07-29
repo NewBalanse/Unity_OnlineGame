@@ -3,7 +3,8 @@ using UnityEngine.Networking;
 
 [RequireComponent(typeof(ConfigurableJoint))]
 [RequireComponent(typeof(PLayerMotor))]
-public class PlayerControl : NetworkBehaviour {
+public class PlayerControl : NetworkBehaviour
+{
 
     [SerializeField]
     private float speed = 3f;
@@ -13,8 +14,6 @@ public class PlayerControl : NetworkBehaviour {
     private float thusterForce = 1000f;
 
     [Header("Spring settings:")]
-    [SerializeField]
-    private JointDriveMode mode = JointDriveMode.Position;
     [SerializeField]
     private float jointSpring = 20f;
     [SerializeField]
@@ -69,8 +68,8 @@ public class PlayerControl : NetworkBehaviour {
     }
     private void SetJointSettings(float _jointSpring)
     {
-        joint.yDrive = new JointDrive {
-            mode = mode,
+        joint.yDrive = new JointDrive
+        {
             positionSpring = _jointSpring,
             maximumForce = jointMaxForce
         };

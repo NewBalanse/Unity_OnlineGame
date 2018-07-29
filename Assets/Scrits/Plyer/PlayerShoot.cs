@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -42,17 +43,27 @@ public class PlayerShoot : NetworkBehaviour
             //do something
             if (_hit.collider.tag.Equals(PLAYER_TAG))
             {
-                CMDPlayerShoot(_hit.collider.name);
+                CmdPlayerShoot(_hit.collider.name, weapon.damage);
             }
         }
     }
-
+    
     [Command]
-    void CMDPlayerShoot(string _id)
+    void CmdPlayerShoot(string _id, int damage)
     {
-        //comand for server
-        Debug.Log(_id + " - has been shoot!");
+        try
+        {
+            //comand for server
+            Debug.Log(_id + " - has been shoot!");
 
-        Destroy(GameObject.Find(_id));
+            Player player = GameManager.GetPlayer(_id);
+
+            player.RpcTakeDamage(damage);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception is script PlayerShoot at methods C_PlayerShoot!" + e.Message);
+        }
+        
     }
 }

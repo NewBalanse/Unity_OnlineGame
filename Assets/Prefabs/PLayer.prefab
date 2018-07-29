@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 114462277719801978}
   - component: {fileID: 114243708125541368}
   - component: {fileID: 153792448806436792}
-  - component: {fileID: 114360371977226632}
+  - component: {fileID: 114149087882830426}
+  - component: {fileID: 114739489199601110}
   m_Layer: 8
   m_Name: PLayer
   m_TagString: Player
@@ -197,13 +198,14 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966271
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -221,6 +223,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -255,6 +258,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -324,6 +328,25 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1356083568057190}
   m_Enabled: 1
+--- !u!114 &114149087882830426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243261334084072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35f3f27a9932ac48ae1ff2eaac93126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+    nameWeapon: Glock
+    damage: 10
+    range: 100
+  cam: {fileID: 20552265446251008}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!114 &114243708125541368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -343,25 +366,6 @@ MonoBehaviour:
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.3
   m_InterpolateMovement: 0
---- !u!114 &114360371977226632
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243261334084072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35f3f27a9932ac48ae1ff2eaac93126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon:
-    nameWeapon: Glock
-    damage: 10
-    range: 100
-  cam: {fileID: 20552265446251008}
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &114462277719801978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -415,6 +419,22 @@ MonoBehaviour:
     i15: 81
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114739489199601110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243261334084072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df48f722bfd1144b8fb1e37e8c63d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  disableComp:
+  - {fileID: 114982936278141308}
+  - {fileID: 114751518433716896}
+  - {fileID: 114149087882830426}
 --- !u!114 &114751518433716896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,6 +465,11 @@ MonoBehaviour:
   - {fileID: 20552265446251008}
   - {fileID: 81817954280432178}
   SceneCamera: {fileID: 0}
+  remoteLayerName: RemotePLayer
+  DontDrawlayer: DontDraw
+  playerGraphics: {fileID: 1042326258458828}
+  playerUIPrefabs: {fileID: 1719313493165022, guid: 61c0dfe6edac03b4f83da1c139052c43,
+    type: 2}
 --- !u!114 &114982936278141308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,7 +484,6 @@ MonoBehaviour:
   speed: 5
   speedMouse: 1.5
   thusterForce: 1300
-  mode: 1
   jointSpring: 20
   jointMaxForce: 40
 --- !u!124 &124694417607019428
